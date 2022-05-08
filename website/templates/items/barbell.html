@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Clear Gym{% endblock %}{%block content%}
+<br />
+<h1 align="center" style="color:white">Barbell With Plates</h1>
+<br />
+<br />
+
+<div>
+    <div style="float: left">
+<img style="border:2px solid black;" src="static/images/barbell.jpg" width="555" height="384" class="center" >
+
+<br />
+
+
+    <h2 align="center" style="color:white">Product Description</h2>
+    <br />
+    <p align="center" style="color:white">I am the founder of Clear Gym, and I have been working as a personal Trainer since 2013. Being never particularly
+        good at sport when I was at school, I found that I actually just really enjoyed fitness, and through that fell
+        into the fitness industry after gaining my BA from the university from Birmingham.
+    </p>
+  
+    
+    </div>
+   
+</div>
+<div>
+<br />
+<a  class="btn btn-outline-light" href="/store">&#x2190; Back</a>
+</div>
+
+
+<div id="smart-button-container">
+      <div style="text-align: center;">
+        <div id="paypal-button-container"></div>
+      </div>
+    </div>
+  <script src="https://www.paypal.com/sdk/js?client-id=sb&enable-funding=venmo&currency=GBP" data-sdk-integration-source="button-factory"></script>
+  <script>
+    function initPayPalButton() {
+      paypal.Buttons({
+        style: {
+          shape: 'rect',
+          color: 'white',
+          layout: 'horizontal',
+          label: 'paypal',
+          
+        },
+
+        createOrder: function(data, actions) {
+          return actions.order.create({
+            purchase_units: [{"description":"Barbell with plates","amount":{"currency_code":"GBP","value":150}}]
+          });
+        },
+
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(function(orderData) {
+            
+            // Full available details
+            console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+
+            // Show a success message within this page, e.g.
+            const element = document.getElementById('paypal-button-container');
+            element.innerHTML = '';
+            element.innerHTML = '<h3>Thank you for your payment!</h3>';
+
+            // Or go to another URL:  actions.redirect('thank_you.html');
+            
+          });
+        },
+
+        onError: function(err) {
+          console.log(err);
+        }
+      }).render('#paypal-button-container');
+    }
+    initPayPalButton();
+  </script>
+
+
+
+{% endblock %}

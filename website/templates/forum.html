@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Clear Gym{% endblock %}{%block content%}
+
+<br />
+<h1 align="center" style="color:white">Clear Gym Discussion Forum</h1>
+<br />
+<br />
+<p1 style="color:white">Please post a comment and have your say!</p1>
+<br />
+<p2 style="color:white">-----------------------------------------------</p2>
+<br />
+<ul class="list-group list-group-flush" id="notes">
+    {% for note in user.notes %}
+    <li class="list-group-item">
+      {{ note.data }}
+      <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+        <span aria-hidden="true">&times;</span>
+      </button>
+        </li>
+    {% endfor %}
+</ul>
+<form method="POST">
+    <textarea name="note" id="note" class="form-control"></textarea>
+    <br />
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Add Comment</button>
+        </div>
+    </form>
+
+
+{% endblock %}

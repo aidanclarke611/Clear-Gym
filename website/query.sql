@@ -1,0 +1,1 @@
+DELETE FROM whosin WHERE user_id=1;

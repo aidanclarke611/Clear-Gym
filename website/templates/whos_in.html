@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Clear Gym{% endblock %}{%block content%}
+
+
+<br />
+<h1 align="center" style="color:white">Sign In Page</h1>
+<br />
+<br />
+
+<h2>View The Table</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                User Id
+            </th>
+            <th>
+                First Name
+            </th>
+        </tr>
+    </thead>
+    {% for instance in data %}
+        <tr>
+            <td>
+                {{ instance.fields.first_name }}
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+<br />
+<br />
+
+<p style="color:white">Please sign in to confirm gym attendance<p>
+
+<a  class="btn btn-primary" href="/signin" > Sign in</a>
+<br />
+<br />
+<br />
+<br />
+<p style="color:white" class="center">Please sign out when finished at the gym<p>
+<a  class="btn btn-primary" href="/signout"> Sign Out</a>
+
+<button type="button" class="btn btn-primary" onClick="deleteID({{ user_id }})">Sign Out</button>
+
+
+
+
+{% endblock %}
